@@ -22,6 +22,7 @@ package org.ow2.clif.jenkins;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.fileupload.FileItem;
@@ -65,7 +66,7 @@ public class ImportZipAction implements RootAction {
 			throws IOException, FileUploadException {
 		List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory())
 				.parseRequest(req);
-		File file = File.createTempFile("zip", null);
+		File file = Files.createTempFile("zip", null).toFile();
 		try {
 			items.get(0).write(file);
 		}

@@ -21,6 +21,7 @@
 package org.ow2.clif.jenkins;
 
 import java.io.File;
+import java.nio.file.Files;
 import org.junit.Assert;
 import org.junit.Test;
 import org.jvnet.hudson.test.HudsonTestCase;
@@ -41,7 +42,7 @@ public class ClifPluginTest extends HudsonTestCase {
 		final ClifPlugin clifPlugin = ClifPlugin.get();
 		try {
 			// create a unique name, then delete the empty file - will be recreated later
-			final File root = File.createTempFile("clifPlugin.test_abs_path", null);
+			final File root = Files.createTempFile("clifPlugin.test_abs_path", null).toFile();
 			final String absolutePath = root.getPath();
 			root.delete();
 
